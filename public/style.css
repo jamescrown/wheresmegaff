@@ -1,0 +1,184 @@
+/* General styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #ffffff;
+    text-align: center;
+}
+
+header.banner {
+    background-color: #0078d7;
+    color: white;
+    padding: 20px 10px;
+    position: relative;
+}
+
+header.banner h1 {
+    margin: 0;
+    font-size: 2rem;
+}
+
+header .btn-place-ad {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    padding: 10px 15px;
+    background-color: white;
+    color: #0078d7;
+    border: 1px solid #0078d7;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+header .btn-place-ad:hover {
+    background-color: #0078d7;
+    color: white;
+}
+
+.button-container {
+    margin-top: 50px;
+}
+
+.btn-choice {
+    display: inline-block;
+    margin: 10px;
+    padding: 20px 40px;
+    font-size: 1.5rem;
+    color: white;
+    text-decoration: none;
+    background-color: #0078d7;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.btn-choice:hover {
+    background-color: #0056a8;
+}
+
+/* Modal styles */
+.modal {
+    display: none;
+    /* Hidden by default */
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+    background-color: white;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 400px;
+    text-align: center;
+    border-radius: 8px;
+}
+
+.modal-content label {
+    display: block;
+    margin-top: 10px;
+}
+
+.modal-content input,
+.modal-content textarea,
+.modal-content select {
+    width: 100%;
+    margin-top: 5px;
+    padding: 8px;
+    box-sizing: border-box;
+}
+
+.modal-content button {
+    margin-top: 15px;
+    padding: 10px 15px;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.modal-content button:nth-child(2) {
+    margin-left: 10px;
+    background-color: red;
+    color: white;
+}
+
+.ad-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 20px auto;
+    max-width: 600px;
+    text-align: left;
+}
+
+.ad-list li {
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.ad-list h3 {
+    margin: 0 0 5px;
+}
+
+.ad-images {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 10px 0;
+}
+
+/* Container for the image and arrows */
+.image-carousel {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    max-width: 600px;
+}
+
+/* Style for the images */
+.ad-image {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Arrow buttons */
+.arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 24px;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    z-index: 1;
+}
+
+.arrow.left {
+    left: 10px;
+}
+
+.arrow.right {
+    right: 10px;
+}
+
+.arrow:hover {
+    background-color: rgba(0, 0, 0, 0.7);
+}

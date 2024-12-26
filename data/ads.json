@@ -1,0 +1,36 @@
+[
+  {
+    "title": "real images",
+    "description": "dummyy",
+    "price": "2234",
+    "type": "Buy",
+    "images": [
+      "/uploads/PoCGwwOukU-ReqIkv9a-Axkp.jpg",
+      "/uploads/SN_Bw0vU6REZETTQyCTOy6Ly.jpg",
+      "/uploads/hffRQA_YOX55hPfgnY5NqKsv.jpg"
+    ],
+    "date": "2024-12-26T13:40:27.999Z"
+  },
+  {
+    "title": "5 Bedroom House for Sale",
+    "description": "5 bedroom 4 bathroom\r\nRathmichael",
+    "price": "700000",
+    "type": "Buy",
+    "images": [
+      "/uploads/Y_oLJB7r1TgzyjdQjYEWZjUA.jpg",
+      "/uploads/jcjtRmcxr4GBxrd5vr5JjwEP.jpg",
+      "/uploads/iUN2vue41bK7qK15qnMKAT89.jpg"
+    ],
+    "date": "2024-12-26T13:59:24.279Z"
+  },
+  {
+    "title": "asdf",
+    "description": "asdf",
+    "price": "2134",
+    "type": "Buy",
+    "images": [
+      "/uploads/firNsdKxezMMSl0d2B0gCf2C.jpg"
+    ],
+    "date": "2024-12-26T13:59:54.284Z"
+  }
+]
