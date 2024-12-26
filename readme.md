@@ -1,0 +1,32 @@
+ToDo
+- Infrastructure
+    - Domain name acquired
+    - Deployed on PC to public domain
+    - Setup Database for persistence
+    - Setup multiple instances of backend code
+    - Setup load balancer
+    - Setup multiple instances of database
+    - Setup automated build pipeline
+    - Setup automated deployment pipeline
+- Features
+    - One large image. Three small images on scroll page
+    - Page for viewing individual ad.
+    - Setup Profile and Sign in
+    - Implement Search Feature with filters
+    - Implement last search cache
+    - Implement sold tab
+    - Expand property properties to include BER 
+    - Display seller profile on advert
+    - Add map feature with properties.
+    - Add comments section to ad
+    - Add review system to seller.
+    - UI overhaul.
+    - Android App
+    - iPhone App
+    - Implement nearby transport routes.
+    - Implement PropertyPriceRegister addon with sale history.
+    - Implement Floodzone overlay.
+    - Implement Mortgage repayment calculator on ad page
+    - Implement Management Fees section
+    - Implement Fire Safety Certificate validation and date.
+    - 
