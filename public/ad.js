@@ -21,7 +21,7 @@ export function displayAds(ads, type) {
     } else {
         const adList = document.createElement('ul');
         adList.className = 'ad-list';
-        ads.forEach(ad => renderAd(ad));
+        renderAds(adList, ads)
         main.appendChild(adList);
     }
 
@@ -32,8 +32,43 @@ export function displayAds(ads, type) {
     main.appendChild(backButton);
 }
 
+export function renderAds(adList, ads) {
+    ads.forEach((ad) => {
+        const adItem = document.createElement('li');
+        adItem.classList.add('ad-item');
+
+        const adTitle = document.createElement('h3')
+        adTitle.textContent = ad.title
+        adItem.appendChild(adTitle)
+
+        ad.images.forEach(imageUrl => {
+            const imgElement = document.createElement('img');
+            imgElement.src = imageUrl;
+            imgElement.alt = `${ad.title} image`;
+            imgElement.classList.add("ad-image");
+            adItem.appendChild(imgElement);
+        });
+
+        const adDescription = document.createElement('h3')
+        adDescription.textContent = ad.description
+        adItem.appendChild(adDescription)
+
+        const adPrice = document.createElement('h3')
+        adPrice.textContent = `Price: ${ad.price}`
+        adItem.appendChild(adPrice)
+
+        const dateString = new Date(ad.date).toLocaleDateString()
+        const adDate = document.createElement('h3')
+        adDate.textContent = `Date Added: ${dateString}`
+        adItem.appendChild(adDate)
+
+        adList.appendChild(adItem);
+    })
+}
+
+// Fix or delete this
 // Function to render ads and their images
-export function renderAd(ad) {
+export function renderAdCarousel(ad) {
     const adItem = document.createElement('li');
     adItem.classList.add('ad-item');
 

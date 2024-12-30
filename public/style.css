@@ -151,7 +151,7 @@ header .btn-place-ad:hover {
 
 /* Style for the images */
 .ad-image {
-    width: 100%;
+    width: 80%;
     height: auto;
     border-radius: 5px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);

@@ -1,6 +1,6 @@
 [
   {
-    "title": "real images",
+    "title": "Blackrock",
     "description": "dummyy",
     "price": "2234",
     "type": "Buy",
@@ -24,10 +24,10 @@
     "date": "2024-12-26T13:59:24.279Z"
   },
   {
-    "title": "asdf",
+    "title": "Maynooth",
     "description": "asdf",
-    "price": "2134",
-    "type": "Buy",
+    "price": "640000",
+    "type": "Rent",
     "images": [
       "/uploads/firNsdKxezMMSl0d2B0gCf2C.jpg"
     ],
