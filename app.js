@@ -77,9 +77,7 @@ const server = http.createServer((req, res) => {
             res.end('Not Found');
         }
     } else if (req.method === 'POST' && req.url === '/place-ad') {
-
         console.log(`Placing ad`);
-
         const form = new multiparty.Form({ uploadDir: uploadsDir });
 
         form.parse(req, (err, fields, files) => {

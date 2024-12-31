@@ -6,6 +6,9 @@ const adModal = document.getElementById('adModal');
 const submitAdButton = document.getElementById('submitAdButton');
 const cancelAdButton = document.getElementById('cancelAdButton');
 
+document.querySelector('.btn-buy').addEventListener('click', () => loadAds('Buy'));
+document.querySelector('.btn-rent').addEventListener('click', () => loadAds('Rent'));
+
 placeAdButton.addEventListener('click', () => {
     adModal.style.display = 'block';
 });
@@ -44,9 +47,6 @@ submitAdButton.addEventListener('click', async () => {
         console.error("Error placing ad:", error);
     }
 });
-
-document.querySelector('.btn-buy').addEventListener('click', () => loadAds('Buy'));
-document.querySelector('.btn-rent').addEventListener('click', () => loadAds('Rent'));
 
 // Loop through all ad items and apply carousel functionality
 document.addEventListener('DOMContentLoaded', () => {

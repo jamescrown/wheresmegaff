@@ -14,22 +14,43 @@ export async function loadAds(type) {
 
 export function displayAds(ads, type) {
     const main = document.querySelector('main');
-    main.innerHTML = `<h2>${type} Listings</h2>`;
 
+    // Keep the button container outside of main's innerHTML
+    if (!document.querySelector('.button-container')) {
+        const buttonContainer = document.createElement('div');
+        buttonContainer.className = 'button-container';
+        buttonContainer.innerHTML = `
+            <a href="#" class="btn-choice btn-buy">Buy</a>
+            <a href="#" class="btn-choice btn-rent">Rent</a>
+        `;
+        main.insertBefore(buttonContainer, main.firstChild);
+
+        // Add event listeners to the buttons
+        document.querySelector('.btn-buy').addEventListener('click', () => loadAds('Buy'));
+        document.querySelector('.btn-rent').addEventListener('click', () => loadAds('Rent'));
+    }
+
+    // Clear the main content except for the button container
+    Array.from(main.children).forEach(child => {
+        if (!child.classList.contains('button-container')) {
+            child.remove();
+        }
+    });
+
+    // Add the listings title
+    const titleElement = document.createElement('h2');
+    titleElement.textContent = `${type} Listings`;
+    main.appendChild(titleElement);
     if (ads.length === 0) {
-        main.innerHTML += `<p>No ${type.toLowerCase()} listings available.</p>`;
+        const noListingsElement = document.createElement('p');
+        noListingsElement.textContent = `No ${type.toLowerCase()} listings available.`;
+        main.appendChild(noListingsElement);
     } else {
         const adList = document.createElement('ul');
         adList.className = 'ad-list';
-        renderAds(adList, ads)
+        renderAds(adList, ads);
         main.appendChild(adList);
     }
-
-    // Add a back button
-    const backButton = document.createElement('button');
-    backButton.textContent = 'Back';
-    backButton.addEventListener('click', () => location.reload());
-    main.appendChild(backButton);
 }
 
 export function renderAds(adList, ads) {
