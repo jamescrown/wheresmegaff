@@ -54,78 +54,69 @@ export function displayAds(ads, type) {
 }
 
 export function renderAds(adList, ads) {
-    ads.forEach((ad) => {
+    ads.forEach((ad, adIndex) => {
         const adItem = document.createElement('li');
         adItem.classList.add('ad-item');
 
-        const adTitle = document.createElement('h3')
-        adTitle.textContent = ad.title
-        adItem.appendChild(adTitle)
+        const adTitle = document.createElement('h3');
+        adTitle.textContent = ad.title;
+        adItem.appendChild(adTitle);
 
-        ad.images.forEach(imageUrl => {
+        // Create image carousel container
+        const carouselContainer = document.createElement('div');
+        carouselContainer.classList.add('image-carousel');
+        carouselContainer.id = `carousel-${adIndex}`;
+
+        // Add left arrow
+        const leftArrow = document.createElement('button');
+        leftArrow.classList.add('arrow', 'left');
+        leftArrow.innerHTML = '&#10094;';
+        leftArrow.onclick = () => changeImage(adIndex, -1);
+        carouselContainer.appendChild(leftArrow);
+
+        // Add images
+        ad.images.forEach((imageUrl, imageIndex) => {
             const imgElement = document.createElement('img');
             imgElement.src = imageUrl;
             imgElement.alt = `${ad.title} image`;
             imgElement.classList.add("ad-image");
-            adItem.appendChild(imgElement);
+            imgElement.style.display = imageIndex === 0 ? 'block' : 'none';
+            carouselContainer.appendChild(imgElement);
         });
 
-        const adDescription = document.createElement('h3')
-        adDescription.textContent = ad.description
-        adItem.appendChild(adDescription)
+        // Add right arrow
+        const rightArrow = document.createElement('button');
+        rightArrow.classList.add('arrow', 'right');
+        rightArrow.innerHTML = '&#10095;';
+        rightArrow.onclick = () => changeImage(adIndex, 1);
+        carouselContainer.appendChild(rightArrow);
 
-        const adPrice = document.createElement('h3')
-        adPrice.textContent = `Price: ${ad.price}`
-        adItem.appendChild(adPrice)
+        adItem.appendChild(carouselContainer);
 
-        const dateString = new Date(ad.date).toLocaleDateString()
-        const adDate = document.createElement('h3')
-        adDate.textContent = `Date Added: ${dateString}`
-        adItem.appendChild(adDate)
+        const adDescription = document.createElement('p');
+        adDescription.textContent = ad.description;
+        adItem.appendChild(adDescription);
+
+        const adPrice = document.createElement('p');
+        adPrice.textContent = `Price: ${ad.price}`;
+        adItem.appendChild(adPrice);
+
+        const dateString = new Date(ad.date).toLocaleDateString();
+        const adDate = document.createElement('p');
+        adDate.textContent = `Date Added: ${dateString}`;
+        adItem.appendChild(adDate);
 
         adList.appendChild(adItem);
-    })
-}
-
-// Fix or delete this
-// Function to render ads and their images
-export function renderAdCarousel(ad) {
-    const adItem = document.createElement('li');
-    adItem.classList.add('ad-item');
-
-
-    // move this down below teh carousel logic below?
-    // point the carousel logic towards this object?
-    // 
-    // Create the title, description, price, and date
-    // Create the title, description, price, and date
-    adItem.innerHTML = `
-        <h3>${ad.title}</h3>
-        <div class="image-carousel" id="carousel-${ad.title.replace(/\s+/g, '-')}">
-            <button class="arrow left" onclick="changeImage('${ad.title.replace(/\s+/g, '-')}', -1)">&#10094;</button>
-            ${ad.images
-            .map(
-                (image, index) =>
-                    `<img src="${image}" alt="${ad.title}" class="ad-image" style="display: ${index === 0 ? 'block' : 'none'
-                    };">`
-            )
-            .join('')}
-            <button class="arrow right" onclick="changeImage('${ad.title.replace(/\s+/g, '-')}', 1)">&#10095;</button>
-        </div>
-        <p>${ad.description}</p>
-        <p>Price: $${ad.price}</p>
-        <p>Date: ${new Date(ad.date).toLocaleDateString()}</p>
-    `;
-
+    });
 }
 
 // Function to change images in the carousel
-let currentImageIndex = 0;
-export function changeImage(adTitle, direction) {
-    const adItem = document.querySelector(`#carousel-${adTitle}`);
-    const images = adItem.querySelectorAll('.ad-image');
+export function changeImage(adIndex, direction) {
+    const carousel = document.querySelector(`#carousel-${adIndex}`);
+    const images = carousel.querySelectorAll('.ad-image');
     const totalImages = images.length;
 
+    let currentImageIndex = Array.from(images).findIndex(img => img.style.display === 'block');
     // Update current image index based on the direction
     currentImageIndex += direction;
 

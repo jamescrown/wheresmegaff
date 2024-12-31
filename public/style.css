@@ -144,31 +144,33 @@ header .btn-place-ad:hover {
 /* Container for the image and arrows */
 .image-carousel {
     position: relative;
-    display: inline-block;
     width: 100%;
     max-width: 600px;
+    margin: 0 auto;
 }
 
-/* Style for the images */
 .ad-image {
-    width: 80%;
+    width: 100%;
     height: auto;
-    border-radius: 5px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: none;
 }
 
-/* Arrow buttons */
 .arrow {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    font-size: 24px;
     background-color: rgba(0, 0, 0, 0.5);
     color: white;
-    border: none;
     padding: 10px;
+    text-decoration: none;
+    font-size: 18px;
+    transition: 0.3s ease;
+    user-select: none;
     cursor: pointer;
-    z-index: 1;
+}
+
+.arrow:hover {
+    background-color: rgba(0, 0, 0, 0.8);
 }
 
 .arrow.left {
@@ -177,8 +179,4 @@ header .btn-place-ad:hover {
 
 .arrow.right {
     right: 10px;
-}
-
-.arrow:hover {
-    background-color: rgba(0, 0, 0, 0.7);
 }
