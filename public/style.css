@@ -147,12 +147,26 @@ header .btn-place-ad:hover {
     width: 100%;
     max-width: 600px;
     margin: 0 auto;
+    overflow: hidden;
+    max-height: 400px;
+    /* Set a maximum height */
+}
+
+.carousel-track {
+    display: flex;
+    transition: transform 0.5s ease;
+    height: 100%;
 }
 
 .ad-image {
     width: 100%;
     height: auto;
-    display: none;
+    /* Allow the height to adjust automatically */
+    max-height: 400px;
+    /* Match the max-height of the carousel */
+    object-fit: contain;
+    /* This will fit the entire image within the container */
+    flex-shrink: 0;
 }
 
 .arrow {
@@ -167,6 +181,7 @@ header .btn-place-ad:hover {
     transition: 0.3s ease;
     user-select: none;
     cursor: pointer;
+    z-index: 10;
 }
 
 .arrow:hover {

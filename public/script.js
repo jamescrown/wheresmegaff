@@ -1,4 +1,4 @@
-import { loadAds } from './ad.js';
+import { loadAds, changeImage } from './ad.js';
 
 // Show the modal
 const placeAdButton = document.getElementById('placeAdButton');
@@ -6,9 +6,17 @@ const adModal = document.getElementById('adModal');
 const submitAdButton = document.getElementById('submitAdButton');
 const cancelAdButton = document.getElementById('cancelAdButton');
 
-document.querySelector('.btn-buy').addEventListener('click', () => loadAds('Buy'));
-document.querySelector('.btn-rent').addEventListener('click', () => loadAds('Rent'));
+document.querySelector('.btn-buy').addEventListener('click', () => {
+    loadAds('Buy').then(() => {
+        initializeCarousels();
+    });
+});
 
+document.querySelector('.btn-rent').addEventListener('click', () => {
+    loadAds('Rent').then(() => {
+        initializeCarousels();
+    });
+});
 placeAdButton.addEventListener('click', () => {
     adModal.style.display = 'block';
 });
@@ -48,17 +56,31 @@ submitAdButton.addEventListener('click', async () => {
     }
 });
 
-// Loop through all ad items and apply carousel functionality
-document.addEventListener('DOMContentLoaded', () => {
-    const adItems = document.querySelectorAll('.ad-item');
+// Initialize carousels and apply functionality
+function initializeCarousels() {
+    const carousels = document.querySelectorAll('.image-carousel');
 
-    adItems.forEach((adItem, index) => {
-        const images = adItem.querySelectorAll('.ad-image');
+    carousels.forEach((carousel, index) => {
+        const track = carousel.querySelector('.carousel-track');
+        const images = track.querySelectorAll('.ad-image');
         if (images.length > 1) {
-            // Show the first image initially
-            images.forEach((image, idx) => {
-                image.style.display = (idx === 0) ? 'block' : 'none';
-            });
+            const imageWidth = images[0].clientWidth;
+            track.style.width = `${imageWidth * images.length}px`;
+
+            // Add event listeners for arrows
+            const leftArrow = carousel.querySelector('.arrow.left');
+            const rightArrow = carousel.querySelector('.arrow.right');
+
+            leftArrow.addEventListener('click', () => changeImage(index, -1));
+            rightArrow.addEventListener('click', () => changeImage(index, 1));
         }
+    });
+}
+
+// Modify the existing DOMContentLoaded event listener
+document.addEventListener('DOMContentLoaded', () => {
+    // Load initial ads (e.g., 'Buy' ads)
+    loadAds('Buy').then(() => {
+        initializeCarousels();
     });
 });

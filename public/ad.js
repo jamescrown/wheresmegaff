@@ -67,31 +67,47 @@ export function renderAds(adList, ads) {
         carouselContainer.classList.add('image-carousel');
         carouselContainer.id = `carousel-${adIndex}`;
 
-        // Add left arrow
-        const leftArrow = document.createElement('button');
-        leftArrow.classList.add('arrow', 'left');
-        leftArrow.innerHTML = '&#10094;';
-        leftArrow.onclick = () => changeImage(adIndex, -1);
-        carouselContainer.appendChild(leftArrow);
+        // Create carousel track
+        const carouselTrack = document.createElement('div');
+        carouselTrack.classList.add('carousel-track');
 
-        // Add images
-        ad.images.forEach((imageUrl, imageIndex) => {
-            const imgElement = document.createElement('img');
-            imgElement.src = imageUrl;
-            imgElement.alt = `${ad.title} image`;
-            imgElement.classList.add("ad-image");
-            imgElement.style.display = imageIndex === 0 ? 'block' : 'none';
-            carouselContainer.appendChild(imgElement);
+        // Add images to the track
+        const imagePromises = ad.images.map((imageUrl, imageIndex) => {
+            return new Promise((resolve, reject) => {
+                const imgElement = new Image();
+                imgElement.onload = () => {
+                    imgElement.classList.add("ad-image");
+                    carouselTrack.appendChild(imgElement);
+                    resolve();
+                };
+                imgElement.onerror = reject;
+                imgElement.src = imageUrl;
+                imgElement.alt = `${ad.title} image ${imageIndex + 1}`;
+            });
         });
 
-        // Add right arrow
-        const rightArrow = document.createElement('button');
-        rightArrow.classList.add('arrow', 'right');
-        rightArrow.innerHTML = '&#10095;';
-        rightArrow.onclick = () => changeImage(adIndex, 1);
-        carouselContainer.appendChild(rightArrow);
+        Promise.all(imagePromises).then(() => {
+            carouselContainer.appendChild(carouselTrack);
 
-        adItem.appendChild(carouselContainer);
+            // Add left arrow
+            const leftArrow = document.createElement('button');
+            leftArrow.classList.add('arrow', 'left');
+            leftArrow.innerHTML = '&#10094;';
+            leftArrow.onclick = () => changeImage(adIndex, -1);
+            carouselContainer.appendChild(leftArrow);
+
+            // Add right arrow
+            const rightArrow = document.createElement('button');
+            rightArrow.classList.add('arrow', 'right');
+            rightArrow.innerHTML = '&#10095;';
+            rightArrow.onclick = () => changeImage(adIndex, 1);
+            carouselContainer.appendChild(rightArrow);
+
+            adItem.appendChild(carouselContainer);
+
+            // Adjust carousel size after images are loaded
+            adjustCarouselSize(carouselContainer);
+        });
 
         const adDescription = document.createElement('p');
         adDescription.textContent = ad.description;
@@ -110,26 +126,36 @@ export function renderAds(adList, ads) {
     });
 }
 
+function adjustCarouselSize(carouselContainer) {
+    const images = carouselContainer.querySelectorAll('.ad-image');
+    let maxHeight = 0;
+
+    images.forEach(img => {
+        const ratio = img.naturalWidth / img.naturalHeight;
+        const height = carouselContainer.offsetWidth / ratio;
+        maxHeight = Math.max(maxHeight, height);
+    });
+
+    carouselContainer.style.height = `${Math.min(maxHeight, 400)}px`; // Cap at 400px
+}
+
 // Function to change images in the carousel
 export function changeImage(adIndex, direction) {
     const carousel = document.querySelector(`#carousel-${adIndex}`);
-    const images = carousel.querySelectorAll('.ad-image');
-    const totalImages = images.length;
+    const track = carousel.querySelector('.carousel-track');
+    const images = track.querySelectorAll('.ad-image');
+    const imageWidth = images[0].clientWidth;
 
-    let currentImageIndex = Array.from(images).findIndex(img => img.style.display === 'block');
-    // Update current image index based on the direction
-    currentImageIndex += direction;
+    let currentPosition = parseInt(track.style.transform.replace('translateX(', '').replace('px)', '') || '0');
+    // Reverse the direction of the slide
+    let newPosition = currentPosition - direction * imageWidth;
 
-    // Loop the image index if it goes out of bounds
-    if (currentImageIndex < 0) {
-        currentImageIndex = totalImages - 1;  // Go to the last image
-    } else if (currentImageIndex >= totalImages) {
-        currentImageIndex = 0;  // Go to the first image
+    // Check boundaries
+    if (newPosition < -(images.length - 1) * imageWidth) {
+        newPosition = 0;
+    } else if (newPosition > 0) {
+        newPosition = -(images.length - 1) * imageWidth;
     }
 
-    // Hide all images
-    images.forEach(image => image.style.display = 'none');
-
-    // Show the selected image
-    images[currentImageIndex].style.display = 'block';
+    track.style.transform = `translateX(${newPosition}px)`;
 }
