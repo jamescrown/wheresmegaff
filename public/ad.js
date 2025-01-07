@@ -58,10 +58,6 @@ export function renderAds(adList, ads) {
         const adItem = document.createElement('li');
         adItem.classList.add('ad-item');
 
-        const adTitle = document.createElement('h3');
-        adTitle.textContent = ad.title;
-        adItem.appendChild(adTitle);
-
         // Create image carousel container
         const carouselContainer = document.createElement('div');
         carouselContainer.classList.add('image-carousel');
@@ -82,7 +78,7 @@ export function renderAds(adList, ads) {
                 };
                 imgElement.onerror = reject;
                 imgElement.src = imageUrl;
-                imgElement.alt = `${ad.title} image ${imageIndex + 1}`;
+                imgElement.alt = `Property image ${imageIndex + 1}`;
             });
         });
 
@@ -107,20 +103,42 @@ export function renderAds(adList, ads) {
 
             // Adjust carousel size after images are loaded
             adjustCarouselSize(carouselContainer);
+
+            // Add other ad details after the carousel
+            const adDetails = document.createElement('div');
+            adDetails.classList.add('ad-details');
+
+            const adAddress = document.createElement('h3');
+            adAddress.textContent = ad.address;
+            adDetails.appendChild(adAddress);
+
+            const adPrice = document.createElement('p');
+            // Replace EUR with € symbol
+            const currencySymbol = ad.currency === 'EUR' ? '€' : ad.currency;
+            adPrice.textContent = `Price: ${currencySymbol}${ad.price}`;
+            adDetails.appendChild(adPrice);
+
+            const adType = document.createElement('p');
+            adType.textContent = `Type: ${ad.type}`;
+            adDetails.appendChild(adType);
+
+            const adSpecs = document.createElement('p');
+            adSpecs.textContent = `${ad.bedrooms} bed | ${ad.bathrooms} bath | ${ad.square_metres} m²`;
+            adDetails.appendChild(adSpecs);
+
+            if (ad.fees !== 'n/a') {
+                const adFees = document.createElement('p');
+                adFees.textContent = `Fees: ${currencySymbol}${ad.fees}`;
+                adDetails.appendChild(adFees);
+            }
+
+            const dateString = new Date(ad.date).toLocaleDateString();
+            const adDate = document.createElement('p');
+            adDate.textContent = `Date Added: ${dateString}`;
+            adDetails.appendChild(adDate);
+
+            adItem.appendChild(adDetails);
         });
-
-        const adDescription = document.createElement('p');
-        adDescription.textContent = ad.description;
-        adItem.appendChild(adDescription);
-
-        const adPrice = document.createElement('p');
-        adPrice.textContent = `Price: ${ad.price}`;
-        adItem.appendChild(adPrice);
-
-        const dateString = new Date(ad.date).toLocaleDateString();
-        const adDate = document.createElement('p');
-        adDate.textContent = `Date Added: ${dateString}`;
-        adItem.appendChild(adDate);
 
         adList.appendChild(adItem);
     });

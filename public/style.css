@@ -129,6 +129,28 @@ header .btn-place-ad:hover {
     align-items: center;
 }
 
+.ad-details {
+    padding: 15px;
+    background-color: #f9f9f9;
+    border-radius: 0 0 5px 5px;
+}
+
+.ad-details h3 {
+    margin-top: 0;
+    color: #333;
+    font-size: 1.2em;
+}
+
+.ad-details p {
+    margin: 10px 0;
+    color: #666;
+}
+
+.ad-details p:first-of-type {
+    font-weight: bold;
+    color: #4a4a4a;
+}
+
 .ad-list h3 {
     margin: 0 0 5px;
 }

@@ -90,8 +90,12 @@ const server = http.createServer((req, res) => {
 
             try {
                 const ad = {
-                    title: fields.title[0],
-                    description: fields.description[0],
+                    address: fields.address[0],
+                    bedrooms: fields.bedrooms[0],
+                    bathrooms: fields.bathrooms[0],
+                    square_metres: fields.square_metres[0],
+                    fees: fields.fees[0] || 'n/a',
+                    currency: fields.currency[0],
                     price: fields.price[0],
                     type: fields.type[0],
                     images: files.images.map(file => `/uploads/${path.basename(file.path)}`),

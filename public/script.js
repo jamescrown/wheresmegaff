@@ -29,10 +29,14 @@ cancelAdButton.addEventListener('click', () => {
 // Submit the ad
 submitAdButton.addEventListener('click', async () => {
     const formData = new FormData();
-    formData.append('title', document.getElementById('adTitle').value);
-    formData.append('description', document.getElementById('adDescription').value);
+    formData.append('address', document.getElementById('adAddress').value);
+    formData.append('bedrooms', document.getElementById('adBedrooms').value);
+    formData.append('bathrooms', document.getElementById('adBathrooms').value);
+    formData.append('square_metres', document.getElementById('adSquareMetres').value);
+    formData.append('fees', document.getElementById('adFees').value || 'n/a');
     formData.append('price', document.getElementById('adPrice').value);
     formData.append('type', document.getElementById('adType').value);
+    formData.append('currency', document.getElementById('adCurrency').value);
 
     const images = document.getElementById('adImages').files;
     for (let i = 0; i < images.length; i++) {
@@ -48,6 +52,8 @@ submitAdButton.addEventListener('click', async () => {
         if (response.ok) {
             alert("Ad placed successfully!");
             document.getElementById('adModal').style.display = 'none';
+            // Optionally, refresh the ad list here
+            loadAds(document.getElementById('adType').value);
         } else {
             alert("Failed to place ad.");
         }

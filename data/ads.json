@@ -1,36 +1,79 @@
 [
   {
-    "title": "Blackrock",
-    "description": "dummyy",
-    "price": "2234",
+    "price": "550000",
     "type": "Buy",
+    "address": "Blackrock, Victoria, Australia",
+    "bedrooms": 5,
+    "bathrooms": 3,
+    "square_metres": 120,
+    "fees": "n/a",
+    "currency": "EUR",
     "images": [
       "/uploads/PoCGwwOukU-ReqIkv9a-Axkp.jpg",
       "/uploads/SN_Bw0vU6REZETTQyCTOy6Ly.jpg",
-      "/uploads/hffRQA_YOX55hPfgnY5NqKsv.jpg"
+      "/uploads/hffRQA_YOX55hPfgnY5NqKsv.jpg",
+      "/uploads/firNsdKxezMMSl0d2B0gCf2C.jpg",
+      "/uploads/iUN2vue41bK7qK15qnMKAT89.jpg",
+      "uploads/jcjtRmcxr4GBxrd5vr5JjwEP.jpg"
     ],
     "date": "2024-12-26T13:40:27.999Z"
   },
   {
-    "title": "5 Bedroom House for Sale",
-    "description": "5 bedroom 4 bathroom\r\nRathmichael",
+    "address": "Blackrock, Victoria, Australia",
+    "bedrooms": 5,
+    "bathrooms": 3,
+    "square_metres": 120,
+    "fees": "2200",
     "price": "700000",
     "type": "Buy",
+    "currency": "EUR",
     "images": [
-      "/uploads/Y_oLJB7r1TgzyjdQjYEWZjUA.jpg",
-      "/uploads/jcjtRmcxr4GBxrd5vr5JjwEP.jpg",
-      "/uploads/iUN2vue41bK7qK15qnMKAT89.jpg"
+      "/uploads/PoCGwwOukU-ReqIkv9a-Axkp.jpg",
+      "/uploads/SN_Bw0vU6REZETTQyCTOy6Ly.jpg",
+      "/uploads/hffRQA_YOX55hPfgnY5NqKsv.jpg",
+      "/uploads/firNsdKxezMMSl0d2B0gCf2C.jpg",
+      "/uploads/iUN2vue41bK7qK15qnMKAT89.jpg",
+      "uploads/jcjtRmcxr4GBxrd5vr5JjwEP.jpg"
     ],
     "date": "2024-12-26T13:59:24.279Z"
   },
   {
-    "title": "Maynooth",
-    "description": "asdf",
+    "address": "Blackrock, Victoria, Australia",
+    "bedrooms": 5,
+    "bathrooms": 3,
+    "square_metres": 120,
+    "fees": "n/a",
     "price": "640000",
+    "currency": "EUR",
     "type": "Rent",
     "images": [
-      "/uploads/firNsdKxezMMSl0d2B0gCf2C.jpg"
+      "/uploads/PoCGwwOukU-ReqIkv9a-Axkp.jpg",
+      "/uploads/SN_Bw0vU6REZETTQyCTOy6Ly.jpg",
+      "/uploads/hffRQA_YOX55hPfgnY5NqKsv.jpg",
+      "/uploads/firNsdKxezMMSl0d2B0gCf2C.jpg",
+      "/uploads/iUN2vue41bK7qK15qnMKAT89.jpg",
+      "uploads/jcjtRmcxr4GBxrd5vr5JjwEP.jpg"
     ],
     "date": "2024-12-26T13:59:54.284Z"
+  },
+  {
+    "address": "Tir na nog, Alesbury road",
+    "bedrooms": "5",
+    "bathrooms": "3",
+    "square_metres": "120",
+    "fees": "n/a",
+    "currency": "EUR",
+    "price": "800000",
+    "type": "Buy",
+    "images": [
+      "/uploads/496zPBsdewWjOqhaGrz5W15J.jpeg",
+      "/uploads/7smEwWKViFg4qUoEh7Cyx3xh.jpeg",
+      "/uploads/H73qnAtPck1jPvdValqKjy0d.jpg",
+      "/uploads/XE1FLu0yxAH9ju8LyolGkNAG.jpg",
+      "/uploads/ot5rlUS9gsVD44QBHP5-AgXV.jpeg",
+      "/uploads/YQ2S0yG7N7PqjWh7f1jvd4YX.jpeg",
+      "/uploads/1pR4JYgcBcOZHIkP7FLKFRj5.jpeg"
+    ],
+    "date": "2025-01-07T22:22:00.530Z"
   }
 ]
